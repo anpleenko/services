@@ -16,7 +16,7 @@ services:
       - "5432"
 
   portainer:
-    image: portainer/portainer-ce:latest
+    image: portainer/portainer-ce:alpine
     container_name: portainer
     environment:
       - TZ=Europe/Moscow
