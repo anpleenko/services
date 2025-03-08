@@ -24,7 +24,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
     ports:
-      - "8009:9000"
+      - "9000:9000"
       # - "9443:9443"
     restart: "no"
 
