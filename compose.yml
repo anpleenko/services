@@ -28,6 +28,16 @@ services:
       # - "9443:9443"
     restart: "no"
 
+  wiremock: # <Wiremock baseUrl>/__admin/webapp
+    image: "holomekc/wiremock-gui:latest"
+    container_name: wiremock
+    ports:
+      - "8080:8080"
+    command: "--port 8080 --max-request-journal 1000 --local-response-templating"
+    volumes:
+      - ./wiremock/mappings:/home/wiremock/mappings # Маппинги
+      - ./wiremock/__files:/home/wiremock/__files # Файлы ответов
+
 volumes:
   postgresql:
   postgresql_data:
