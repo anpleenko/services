@@ -33,14 +33,7 @@ services:
     container_name: wiremock
     ports:
       - "8080:8080"
-    command:
-      [
-        "--port 8080",
-        "--verbose",
-        "--max-request-journal 1000",
-        "--enable-stub-cors",
-        "--local-response-templating",
-      ]
+    command: "--port 8080 --verbose --max-request-journal 1000 --enable-stub-cors --local-response-templating"
     volumes:
       - ./wiremock/mappings:/home/wiremock/mappings # Маппинги
       - ./wiremock/__files:/home/wiremock/__files # Файлы ответов
