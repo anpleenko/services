@@ -33,10 +33,23 @@ services:
     container_name: wiremock
     ports:
       - "8080:8080"
-    command: "--port 8080 --max-request-journal 1000 --local-response-templating"
+    command:
+      [
+        "--port 8080",
+        "--verbose",
+        "--max-request-journal 1000",
+        "--enable-stub-cors",
+        "--local-response-templating",
+      ]
     volumes:
       - ./wiremock/mappings:/home/wiremock/mappings # Маппинги
       - ./wiremock/__files:/home/wiremock/__files # Файлы ответов
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/__admin"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: "no"
 
 volumes:
   postgresql:
